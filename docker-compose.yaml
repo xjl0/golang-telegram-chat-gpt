@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  tg-bot-chat-gpt:
+    image: ghcr.io/xjl0/golang-telegram-chat-gpt:latest
+    container_name: tg-bot-chat-gpt
+    environment:
+      - TI_OPENAI_API_KEY=openai_token
+      - TI_TELEGRAM_BOT_TOKEN=telegram_bot_token
+      - TI_CONVERSATION_IDLE_TIMEOUT=3600
+      - TI_PROXY=
+      - TI_ALLOWED_TG_IDS=1234
+      - TI_MODEL=gpt-3.5-turbo
+    restart: always
