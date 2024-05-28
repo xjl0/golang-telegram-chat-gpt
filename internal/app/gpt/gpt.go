@@ -38,5 +38,5 @@ func NewApp(token, proxy string, cTimeout int, model string) *App {
 		Transport: transport,
 	}
 
-	return &App{client: openai.NewClientWithConfig(config), history: history, cTimeout: cTimeout}
+	return &App{client: openai.NewClientWithConfig(config), history: history, cTimeout: cTimeout, model: model}
 }
