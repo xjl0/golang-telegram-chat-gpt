@@ -1,13 +1,14 @@
 FROM golang:1.22.3-alpine as builder
-
-WORKDIR /app
+WORKDIR /backend-app-files
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./app ./cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./application ./cmd/main.go
 
-FROM alpine:latest
+FROM alpine
 
-COPY --from=builder /app/app /app
+RUN apk add --no-cache ca-certificates tzdata
 
-ENTRYPOINT ["/app"]
+COPY --from=builder /backend-app-files/application /application
+
+ENTRYPOINT ["/application"]
